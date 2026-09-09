@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vittoria Tirelli — Lingue & Ripetizioni</title>
+<meta name="description" content="Lezioni di lingue straniere e ripetizioni su misura, online o in presenza.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#5B4C3B;
+  --paper:#F5EDE1;
+  --gold:#C9A66B;
+  --teal:#8A9A85;
+  --charcoal:#4A4239;
+  --line: rgba(91,76,59,0.16);
+  --radius: 3px;
+}
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--paper);
+    color:var(--charcoal);
+    font-family:'Space Grotesk', sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  @media(max-width:640px){ .wrap{ padding:0 20px; } }
+
+  /* ---------- focus & motion ---------- */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:3px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(251,246,236,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  header.scrolled{
+    border-color:var(--line);
+    box-shadow:0 4px 20px rgba(20,33,61,0.05);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 0;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.3rem;
+    color:var(--ink);
+  }
+  .logo span{ color:var(--teal); }
+  .nav-links{
+    display:flex;
+    gap:36px;
+    font-size:0.95rem;
+    font-weight:500;
+  }
+  .nav-links a{
+    position:relative;
+    padding:4px 0;
+  }
+  .nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:2px;
+    background:var(--gold);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform .25s ease;
+  }
+  .nav-links a:hover::after{ transform:scaleX(1); }
+
+  .nav-cta{
+    background:var(--ink);
+    color:var(--paper);
+    padding:10px 20px;
+    border-radius:var(--radius);
+    font-size:0.9rem;
+    font-weight:600;
+    transition:background .2s ease;
+  }
+  .nav-cta:hover{ background:var(--teal); }
+
+  .menu-btn{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:8px;
+  }
+  .menu-btn span{
+    width:24px; height:2px; background:var(--ink);
+  }
+
+  @media(max-width:800px){
+    .nav-links, .nav-cta{ display:none; }
+    .menu-btn{ display:flex; }
+    .nav-links.open{
+      display:flex;
+      flex-direction:column;
+      position:absolute;
+      top:100%; left:0; right:0;
+      background:var(--paper);
+      padding:24px 20px;
+      border-bottom:1px solid var(--line);
+      gap:18px;
+    }
+    .nav-cta.open{
+      display:block;
+      margin:0 20px 20px;
+      text-align:center;
+    }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:96px 0 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media(max-width:900px){
+    .hero-grid{ grid-template-columns:1fr; }
+  }
+
+  .eyebrow-line{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--teal);
+    font-weight:600;
+    font-size:0.95rem;
+    margin-bottom:22px;
+  }
+  .eyebrow-line::before{
+    content:"";
+    width:28px; height:2px;
+    background:var(--teal);
+  }
+
+  .greeting{
+    font-size:clamp(3.2rem, 8vw, 5.6rem);
+    line-height:0.98;
+    min-height:1.1em;
+  }
+  .greeting .word{
+    display:inline-block;
+    animation:swap 3.6s ease-in-out infinite;
+  }
+  @keyframes swap{
+    0%   { opacity:0; transform:translateY(14px); }
+    8%   { opacity:1; transform:translateY(0); }
+    24%  { opacity:1; transform:translateY(0); }
+    32%  { opacity:0; transform:translateY(-14px); }
+    100% { opacity:0; }
+  }
+
+  .hero h1 .static-line{
+    display:block;
+    font-size:clamp(2.2rem, 4.4vw, 3.2rem);
+    margin-top:6px;
+  }
+
+  .hero p.lead{
+    max-width:46ch;
+    margin-top:26px;
+    font-size:1.1rem;
+    color:#42465A;
+  }
+
+  .hero-actions{
+    display:flex;
+    gap:16px;
+    margin-top:36px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 26px;
+    border-radius:var(--radius);
+    font-weight:600;
+    font-size:0.98rem;
+    transition:transform .18s ease, background .18s ease, color .18s ease;
+  }
+  .btn-primary{
+    background:var(--gold);
+    color:var(--ink);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); }
+  .btn-outline{
+    border:1.5px solid var(--ink);
+    color:var(--ink);
+  }
+  .btn-outline:hover{ background:var(--ink); color:var(--paper); }
+
+  /* stamps illustration */
+  .stamp-cluster{
+    position:relative;
+    height:360px;
+    margin-left:60px;
+  }
+  .stamp{
+    position:absolute;
+    width:150px;
+    padding:18px 14px;
+    background:var(--paper);
+    border:2px solid var(--ink);
+    border-radius:2px;
+    text-align:center;
+    box-shadow:6px 6px 0 rgba(20,33,61,0.9);
+  }
+  .stamp .code{
+    font-family:'Fraunces', serif;
+    font-size:1.7rem;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .stamp .lvl{
+    margin-top:4px;
+    font-size:0.72rem;
+    letter-spacing:0.04em;
+    color:var(--teal);
+    font-weight:600;
+  }
+  .stamp .flag{
+  width: 100px;
+  height:100px;
+  margin:0 auto;
+  border-radius:50%;
+  object-fit:cover;
+  border:1.5px solid var(--ink);
+}
+  .s1{ top:0; left:10%; transform:rotate(-7deg); }
+  .s2{ top:15px; left:55%; transform:rotate(5deg); z-index:2; border-color:var(--teal); }
+  .s3{ top:180px; left:6%; transform:rotate(4deg); }
+  .s4{ top:190px; left:52%; transform:rotate(-4deg); }
+  @media(max-width:900px){ .stamp-cluster{ height:280px; margin-top:20px; margin: left 15px; } .stamp{ width:120px; padding:14px 10px; } .stamp .code{ font-size:1.3rem; } }
+
+  /* ---------- section shell ---------- */
+  section{ padding:88px 0; border-top:1px solid var(--line); }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:48px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{ font-size:clamp(1.9rem, 3.4vw, 2.6rem); }
+  .section-head p{ max-width:38ch; color:#42465A; }
+
+  /* ---------- lingue ---------- */
+.lang-row{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  max-width:640px;
+}
+.lang-item{
+  border:1.5px solid var(--line);
+  border-left:4px solid var(--line);
+  border-radius:var(--radius);
+  padding:22px 26px;
+  background:#fff;
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .6s ease, transform .6s ease, border-left-color .3s ease;
+}
+.lang-item.in-view{
+  opacity:1;
+  transform:translateY(0);
+}
+.lang-item:hover{
+  border-left-color:var(--gold);
+}
+  .lang-item h3{
+    font-size:1.15rem;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+  }
+  .lang-item .tag{
+    font-size:0.72rem;
+    font-weight:700;
+    color:var(--teal);
+  }
+  .lang-item .bar{
+    margin-top:14px;
+    height:6px;
+    background:var(--line);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .lang-item .bar i{
+    display:block;
+    height:100%;
+    background:var(--gold);
+  }
+  .lang-item .note{
+    margin-top:10px;
+    font-size:0.85rem;
+    color:#5A5E6E;
+  }
+
+  /* ---------- chi sono ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.7fr 1.3fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media(max-width:800px){ .about-grid{ grid-template-columns:1fr; } }
+  .avatar{
+    width:100%;
+    aspect-ratio:1;
+    border-radius:6px;
+    background:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--paper);
+    font-family:'Fraunces', serif;
+    font-size:4rem;
+    font-weight:600;
+  }
+  .about-grid p{ margin-top:16px; color:#42465A; }
+  .about-grid .stats{
+    display:flex;
+    gap:36px;
+    margin-top:28px;
+  }
+  .stat b{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:1.9rem;
+    color:var(--ink);
+  }
+  .stat span{ font-size:0.85rem; color:#5A5E6E; }
+
+  /* ---------- servizi (editorial rows) ---------- */
+  .service-row{
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:32px;
+    padding:28px 0;
+    border-top:1px solid var(--line);
+  }
+  .service-row:last-child{ border-bottom:1px solid var(--line); }
+  .service-row h3{ font-size:1.3rem; }
+  .service-row .desc{ color:#42465A; max-width:56ch; }
+  @media(max-width:640px){ .service-row{ grid-template-columns:1fr; gap:8px; } }
+
+  /* ---------- come funziona ---------- */
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:32px;
+  }
+  @media(max-width:800px){ .steps{ grid-template-columns:1fr; } }
+  .step .num{
+    font-family:'Fraunces', serif;
+    font-size:1rem;
+    color:var(--teal);
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .step h3{ font-size:1.2rem; margin-bottom:8px; }
+  .step p{ color:#42465A; font-size:0.95rem; }
+
+  /* ---------- CV band ---------- */
+  .cv-band{
+    background:var(--ink);
+    color:var(--paper);
+    border-top:none;
+  }
+  .cv-band .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:32px;
+    flex-wrap:wrap;
+  }
+  .cv-band h2{ color:var(--paper); font-size:clamp(1.8rem,3vw,2.4rem); max-width:16ch; }
+  .cv-band p{ color:#C7CCDA; margin-top:10px; max-width:40ch; }
+  .cv-band .btn-primary{ white-space:nowrap; }
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--ink);
+    color:#C7CCDA;
+    padding:56px 0 32px;
+  }
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:32px;
+    padding-bottom:36px;
+    border-bottom:1px solid rgba(255,255,255,0.12);
+  }
+  footer .logo{ color:var(--paper); }
+  footer .foot-links{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    font-size:0.9rem;
+  }
+  footer .foot-links a:hover{ color:var(--gold); }
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    padding-top:24px;
+    font-size:0.8rem;
+    color:#8790A6;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  .marquee-section{
+  background:var(--ink);
+  padding:56px 0;
+  overflow:hidden;
+}
+.marquee-row{ overflow:hidden; }
+.marquee-row + .marquee-row{ margin-top:10px; }
+.marquee-track{
+  display:flex;
+  width:max-content;
+  gap:28px;
+  align-items:baseline;
+  animation:scroll-left 22s linear infinite;
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:clamp(2.2rem, 6vw, 4.2rem);
+  color:var(--paper);
+  white-space:nowrap;
+}
+.track-reverse{
+  animation-name:scroll-right;
+  color:var(--gold);
+}
+.marquee-track span:nth-child(even){
+  color:var(--teal);
+  opacity:.7;
+  font-weight:400;
+}
+@keyframes scroll-left{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(-50%); }
+}
+@keyframes scroll-right{
+  from{ transform:translateX(-50%); }
+  to{ transform:translateX(0); }
+}
+@media (prefers-reduced-motion: reduce){
+  .marquee-track{ animation:none; }
+}
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="wrap nav">
+    <a href="index.html" class="logo">Vittoria <span>Tirelli</span></a>
+
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="chi-sono.html">Chi sono</a>
+      <a href="servizi.html">Servizi</a>
+      <a href="cv.html">Curriculum</a>
+      <a href="contatti.html">Contatti</a>
+    </nav>
+
+    <a href="contatti.html" class="nav-cta" id="nav-cta">Prenota una lezione</a>
+
+    <button class="menu-btn" id="menu-btn" aria-label="Apri il menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow-line">Lingue straniere · Ripetizioni</div>
+        <h1>
+          <span class="greeting">
+            <span class="word" style="animation-delay:0s">Ciao</span><span class="word" style="animation-delay:0.9s;">Hello</span><span class="word" style="animation-delay:1.8s;">Hola</span><span class="word" style="animation-delay:2.7s;">Bonjour</span>
+          </span>
+          <span class="static-line">sono Vittoria.</span>
+        </h1>
+        <p class="lead">Insegno inglese, francese e spagnolo con lezioni su misura per studenti, adulti e chi si prepara a un esame di certificazione. Online o in presenza, al tuo ritmo.</p>
+        <div class="hero-actions">
+          <a href="contatti.html" class="btn btn-primary">Prenota una lezione di prova</a>
+          <a href="cv.html" class="btn btn-outline">Scarica il CV</a>
+        </div>
+      </div>
+
+    <div class="stamp-cluster" aria-hidden="true">
+      <div class="stamp s1"><img class="flag" src="england.gif" alt="Bandiera Regno Unito"><div class="lvl">C2 · Cambridge</div></div>
+      <div class="stamp s2"><img class="flag" src="francia.gif" alt="Bandiera Francia"><div class="lvl">C1 · DELF</div></div>
+      <div class="stamp s3"><img class="flag" src="spagna.gif" alt="Bandiera Spagna"><div class="lvl">B2 · DELE</div></div>
+      <div class="stamp s4"><img class="flag" src="italia.gif" alt="Bandiera Italia"><div class="lvl">Madrelingua</div></div>
+    </div>
+  </section>
+
+  <!-- LINGUE -->
+  <section id="lingue">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Le lingue che insegno</h2>
+        <p>Percorsi personalizzati in base al livello di partenza e all'obiettivo: scuola, lavoro o certificazione.</p>
+      </div>
+      <div class="lang-row">
+        <div class="lang-item">
+          <h3>Inglese <span class="tag">C2</span></h3>
+          <div class="bar"><i style="width:96%"></i></div>
+          <p class="note">Grammatica, conversazione, preparazione Cambridge e IELTS.</p>
+        </div>
+        <div class="lang-item">
+          <h3>Francese <span class="tag">C1</span></h3>
+          <div class="bar"><i style="width:88%"></i></div>
+          <p class="note">Dalle basi alla fluidità, preparazione DELF/DALF.</p>
+        </div>
+        <div class="lang-item">
+          <h3>Spagnolo <span class="tag">B2</span></h3>
+          <div class="bar"><i style="width:76%"></i></div>
+          <p class="note">Conversazione pratica e supporto scolastico.</p>
+        </div>
+        <div class="lang-item">
+          <h3>Italiano <span class="tag">L1</span></h3>
+          <div class="bar"><i style="width:100%"></i></div>
+          <p class="note">Ripetizioni per studenti stranieri e madrelingua.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="marquee-section" style="border-top:none;">
+    <div class="marquee-row">
+      <div class="marquee-track">
+        <span>IMPARARE</span><span>·</span><span>LEARN</span><span>·</span><span>APPRENDRE</span><span>·</span><span>APRENDER</span><span>·</span>
+        <span>IMPARARE</span><span>·</span><span>LEARN</span><span>·</span><span>APPRENDRE</span><span>·</span><span>APRENDER</span><span>·</span>
+      </div>
+    </div>
+    <div class="marquee-row">
+      <div class="marquee-track track-reverse">
+        <span>PARLARE</span><span>·</span><span>SPEAK</span><span>·</span><span>PARLER</span><span>·</span><span>HABLAR</span><span>·</span>
+        <span>PARLARE</span><span>·</span><span>SPEAK</span><span>·</span><span>PARLER</span><span>·</span><span>HABLAR</span><span>·</span>
+      </div>
+    </div>
+  </section>
+  <!-- CHI SONO -->
+  <section id="chi-sono">
+    <div class="wrap about-grid">
+      <div class="avatar"><img src="Screenshot 2026-09-08 221719.png" alt="Primo piano"></div>
+      <div>
+        <h2>Chi sono</h2>
+        <p>Sono diplomata e da anni affianco studenti di ogni età nello studio delle lingue straniere, con un metodo che unisce grammatica solida e conversazione reale. Credo che imparare una lingua sia prima di tutto una questione di fiducia: il mio compito è farti sentire a tuo agio prima ancora che preparato.</p>
+        <p>Lavoro sia online che in presenza, con programmi costruiti sulle esigenze di chi ho davanti — che si tratti di recuperare un'insufficienza o prepararsi a una certificazione internazionale.</p>
+        <div class="stats">
+          <div class="stat"><b>4</b><span>lingue insegnate</span></div>
+          <div class="stat"><b>+50</b><span>studenti seguiti</span></div>
+          <div class="stat"><b>3</b><span>certificazioni</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIZI -->
+  <section id="servizi">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Cosa offro</h2>
+        <p>Lezioni pensate per obiettivi diversi, sempre su misura.</p>
+      </div>
+
+      <div class="service-row">
+        <h3>Ripetizioni</h3>
+        <p class="desc">Supporto scolastico per medie, superiori e università: recupero debiti, compiti guidati, preparazione a verifiche e interrogazioni.</p>
+      </div>
+      <div class="service-row">
+        <h3>Conversazione</h3>
+        <p class="desc">Lezioni orientate alla fluidità e alla pronuncia, utili per lavoro, viaggi o semplicemente per non perdere la lingua.</p>
+      </div>
+      <div class="service-row">
+        <h3>Certificazioni</h3>
+        <p class="desc">Preparazione mirata a esami internazionali come Cambridge, DELF/DALF e DELE, con simulazioni e materiali specifici.</p>
+      </div>
+      <div class="service-row">
+        <h3>Online o in presenza</h3>
+        <p class="desc">Massima flessibilità: lezioni individuali da remoto o incontri di persona, in base a ciò che preferisci.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COME FUNZIONA -->
+  <section id="come-funziona">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Come funziona</h2>
+        <p>Tre passaggi per iniziare, senza impegno.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">01</div>
+          <h3>Ci sentiamo</h3>
+          <p>Mi scrivi con il tuo obiettivo e il livello di partenza, così capisco come aiutarti al meglio.</p>
+        </div>
+        <div class="step">
+          <div class="num">02</div>
+          <h3>Lezione di prova</h3>
+          <p>Facciamo una prima lezione per conoscerci e valutare insieme il punto di partenza.</p>
+        </div>
+        <div class="step">
+          <div class="num">03</div>
+          <h3>Percorso su misura</h3>
+          <p>Costruiamo un piano di lezioni adatto ai tuoi tempi e al tuo obiettivo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CV BAND -->
+  <section class="cv-band">
+    <div class="wrap">
+      <div>
+        <h2>Vuoi conoscere il mio percorso?</h2>
+        <p>Titoli di studio, certificazioni ed esperienza in un unico documento.</p>
+      </div>
+      <a href="cv.html" class="btn btn-primary">Vai al Curriculum</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <a href="index.html" class="logo">Vittoria Tirelli</a>
+      <nav class="foot-links">
+        <a href="chi-sono.html">Chi sono</a>
+        <a href="servizi.html">Servizi</a>
+        <a href="cv.html">Curriculum</a>
+        <a href="contatti.html">Contatti</a>
+      </nav>
+    </div>
+    <div class="wrap footer-bottom" style="padding:0;">
+      <span>© 2026 Vittoria Tirelli — Lezioni di lingue e ripetizioni</span>
+      <span>info@esempio.it</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // header ombra allo scroll
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  });
+
+  // menu mobile
+  const menuBtn = document.getElementById('menu-btn');
+  const navLinks = document.getElementById('nav-links');
+  const navCta = document.getElementById('nav-cta');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navCta.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+  });
+
+    // effetto comparsa a cascata per le lingue
+  const langItems = document.querySelectorAll('.lang-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting){
+        setTimeout(() => entry.target.classList.add('in-view'), i * 120);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  langItems.forEach(item => observer.observe(item));
+</script>
+
+</body>
+</html>
