@@ -84,8 +84,16 @@
     font-weight:600;
     font-size:1.3rem;
     color:var(--ink);
+    display:flex;
+    align-items:center;
+    gap:10px;
   }
   .logo span{ color:var(--teal); }
+  .logo img{
+    height:50px;
+    width:auto;
+    display:block;
+  }
   .nav-links{
     display:flex;
     gap:36px;
@@ -116,6 +124,8 @@
     font-size:0.9rem;
     font-weight:600;
     transition:background .2s ease;
+    border:none;
+    cursor:pointer;
   }
   .nav-cta:hover{ background:var(--teal); }
 
@@ -228,6 +238,8 @@
     font-weight:600;
     font-size:0.98rem;
     transition:transform .18s ease, background .18s ease, color .18s ease;
+    border:none;
+    cursor:pointer;
   }
   .btn-primary{
     background:var(--gold);
@@ -237,6 +249,7 @@
   .btn-outline{
     border:1.5px solid var(--ink);
     color:var(--ink);
+    background:transparent;
   }
   .btn-outline:hover{ background:var(--ink); color:var(--paper); }
 
@@ -281,7 +294,16 @@
   .s2{ top:15px; left:55%; transform:rotate(5deg); z-index:2; border-color:var(--teal); }
   .s3{ top:180px; left:6%; transform:rotate(4deg); }
   .s4{ top:190px; left:52%; transform:rotate(-4deg); }
-  @media(max-width:900px){ .stamp-cluster{ height:280px; margin-top:20px; margin: left 15px; } .stamp{ width:120px; padding:14px 10px; } .stamp .code{ font-size:1.3rem; } }
+  @media(max-width:900px){
+    .stamp-cluster{ height:280px; margin-top:20px; margin-left:15px; }
+    .stamp{ width:120px; padding:14px 10px; }
+    .stamp .code{ font-size:1.3rem; }
+  }
+  @media(max-width:480px){
+    .stamp-cluster{ margin-left:0; height:240px; }
+    .stamp{ width:100px; padding:10px 8px; }
+    .stamp .flag{ width:70px; height:70px; }
+  }
 
   /* ---------- section shell ---------- */
   section{ padding:88px 0; border-top:1px solid var(--line); }
@@ -469,12 +491,20 @@
     font-family:'Fraunces', serif;
     font-size:4rem;
     font-weight:600;
+    overflow:hidden;
+  }
+  .avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
   }
   .about-grid p{ margin-top:16px; color:#42465A; }
   .about-grid .stats{
     display:flex;
     gap:36px;
     margin-top:28px;
+    flex-wrap:wrap;
   }
   .stat b{
     display:block;
@@ -603,139 +633,79 @@
   .marquee-track{ animation:none; }
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* spazio tra logo e testo */
-}
-
-.logo img {
-  height: 50px;   /* modifica come preferisci */
-  width: auto;
-  display: block;
-}
-
 .modal {
     display: none;
     position: fixed;
     z-index: 9999;
     inset: 0;
-
     background: rgba(0, 0, 0, 0.65);
-
     justify-content: center;
     align-items: center;
-
     padding: 20px;
 }
 
 .modal-content {
     position: relative;
-
     width: 100%;
     max-width: 550px;
-
     max-height: 90vh;
     overflow-y: auto;
-
     background: white;
     border-radius: 20px;
-
     padding: 35px;
-
     box-sizing: border-box;
-
     box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-
     animation: modalAppear 0.3s ease;
 }
 
+@media(max-width:480px){
+  .modal-content{ padding:24px 20px; border-radius:14px; }
+}
+
 @keyframes modalAppear {
-
-    from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .close {
     position: absolute;
-
     top: 12px;
     right: 18px;
-
     border: none;
     background: transparent;
-
     font-size: 30px;
-
     cursor: pointer;
 }
 
-.form-group {
-    margin-bottom: 18px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 7px;
-    font-weight: 600;
-}
-
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; margin-bottom: 7px; font-weight: 600; }
 .form-group input,
 .form-group textarea {
     width: 100%;
     padding: 13px 15px;
-
     border: 1px solid #ddd;
     border-radius: 10px;
-
     font-family: inherit;
     font-size: 15px;
-
     box-sizing: border-box;
 }
-
 .form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: #333;
-}
-
-.form-group small {
-    display: block;
-    margin-top: 5px;
-    color: #d93025;
-}
+.form-group textarea:focus { outline: none; border-color: #333; }
+.form-group small { display: block; margin-top: 5px; color: #d93025; }
 
 .send-btn {
     width: 100%;
-
     padding: 14px;
-
     border: none;
     border-radius: 10px;
-
     background: #111;
     color: white;
-
     font-size: 16px;
     font-weight: 600;
-
     cursor: pointer;
 }
 
-#formSuccess {
-    text-align: center;
-    color: #188038;
-    font-weight: 600;
-}
-
+#formSuccess { text-align: center; color: #188038; font-weight: 600; }
 
 </style>
     <link rel="icon" type="image/x-icon" href="logo1.png">
@@ -747,7 +717,7 @@
   <div class="wrap nav">
 
     <a href="index.html" class="logo">
-      <img src="logo2.png">
+      <img src="logo2.png" alt="Logo Vittoria Tirelli">
       Vittoria <span>Tirelli</span>
     </a>
 
@@ -758,18 +728,15 @@
       <a href="contatti.html">Contatti</a>
     </nav>
 
-        <button type="button" id="openContact" class="btn btn-primary">
-            Prenota una lezione
-        </button>
+    <button type="button" class="btn nav-cta js-open-contact">
+        Prenota una lezione
+    </button>
     <button class="menu-btn" id="menu-btn" aria-label="Apri il menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
 
   </div>
 </header>
-
-</header>
-
 
 <main>
 
@@ -786,9 +753,9 @@
         </h1>
         <p class="lead">Insegno inglese, francese e spagnolo con lezioni su misura per studenti, adulti e chi si prepara a un esame di certificazione. Online o in presenza, al tuo ritmo.</p>
         <div class="hero-actions">
-        <button type="button" id="openContact" class="btn btn-primary">
-            Prenota una lezione
-        </button>
+          <button type="button" class="btn btn-primary js-open-contact">
+              Prenota una lezione
+          </button>
           <a href="cv.html" class="btn btn-outline">Scarica il CV</a>
         </div>
       </div>
@@ -861,6 +828,7 @@
       </div>
     </div>
   </section>
+
   <!-- CHI SONO -->
   <section id="chi-sono">
     <div class="wrap about-grid">
@@ -878,88 +846,6 @@
     </div>
   </section>
 
-      <!-- Tutto il resto della tua pagina -->
-
-
-    <!-- MODALE CONTATTI -->
-    <div id="contactModal" class="modal">
-
-        <div class="modal-content">
-
-            <button type="button" id="closeModal" class="close">
-                &times;
-            </button>
-
-            <h2>Prenota una lezione di prova</h2>
-
-            <p>
-                Compila il modulo con i tuoi dati e verrai ricontattato
-                per concordare insieme giorno e orario della lezione.
-            </p>
-
-            <form id="contactForm">
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="La tua email"
-                        required
-                    >
-
-                    <small id="emailError"></small>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Numero di telefono</label>
-
-                    <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        placeholder="Es. 333 1234567"
-                        required
-                    >
-
-                    <small id="phoneError"></small>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Messaggio</label>
-
-                    <textarea
-                        id="message"
-                        name="message"
-                        rows="6"
-                        placeholder="Scrivi qui eventuali informazioni, materia, classe, disponibilità..."
-                        required
-                    ></textarea>
-
-                    <small id="messageError"></small>
-                </div>
-
-                <button type="submit" class="send-btn">
-                    Invia richiesta
-                </button>
-
-                <p id="formSuccess"></p>
-
-            </form>
-
-        </div>
-
-    </div>
-
-
-    <!-- IL TUO JAVASCRIPT -->
-    <script src="script.js"></script>
-
-</body>
-</html>
-
   <!-- SERVIZI -->
   <section id="servizi">
     <div class="wrap">
@@ -969,7 +855,7 @@
 
       <div class="service-row">
         <h3>Ripetizioni</h3>
-        <p class="desc">Supporto scolastico personalizzato per studenti delle scuole medie, superiori e università, pensato per affrontare con maggiore sicurezza ogni fase del percorso di studio. Le lezioni possono essere dedicate al recupero di debiti e lacune, allo svolgimento guidato dei compiti, alla preparazione di verifiche e interrogazioni, fino al consolidamento del metodo di studio e degli argomenti più complessi. L’obiettivo è aiutare ogni studente a comprendere realmente le materie, sviluppare maggiore autonomia e affrontare lo studio con più sicurezza e consapevolezza.
+        <p class="desc">Supporto scolastico personalizzato per studenti delle scuole medie, superiori e università, pensato per affrontare con maggiore sicurezza ogni fase del percorso di studio. Le lezioni possono essere dedicate al recupero di debiti e lacune, allo svolgimento guidato dei compiti, alla preparazione di verifiche e interrogazioni, fino al consolidamento del metodo di studio e degli argomenti più complessi. L'obiettivo è aiutare ogni studente a comprendere realmente le materie, sviluppare maggiore autonomia e affrontare lo studio con più sicurezza e consapevolezza.
 </p>
       </div>
       <div class="service-row">
@@ -1036,6 +922,34 @@
   </div>
 </footer>
 
+<!-- MODALE CONTATTI -->
+<div id="contactModal" class="modal">
+    <div class="modal-content">
+        <button type="button" id="closeModal" class="close">&times;</button>
+        <h2>Prenota una lezione di prova</h2>
+        <p>Compila il modulo con i tuoi dati e verrai ricontattato per concordare insieme giorno e orario della lezione.</p>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="La tua email" required>
+                <small id="emailError"></small>
+            </div>
+            <div class="form-group">
+                <label for="phone">Numero di telefono</label>
+                <input type="tel" id="phone" name="phone" placeholder="Es. 333 1234567" required>
+                <small id="phoneError"></small>
+            </div>
+            <div class="form-group">
+                <label for="message">Messaggio</label>
+                <textarea id="message" name="message" rows="6" placeholder="Scrivi qui eventuali informazioni, materia, classe, disponibilità..." required></textarea>
+                <small id="messageError"></small>
+            </div>
+            <button type="submit" class="send-btn">Invia richiesta</button>
+            <p id="formSuccess"></p>
+        </form>
+    </div>
+</div>
+
 <script>
   // header ombra allo scroll
   const header = document.getElementById('site-header');
@@ -1046,10 +960,10 @@
   // menu mobile
   const menuBtn = document.getElementById('menu-btn');
   const navLinks = document.getElementById('nav-links');
-  const navCta = document.getElementById('nav-cta');
+  const navCta = document.querySelector('.nav-cta');
   menuBtn.addEventListener('click', () => {
     const isOpen = navLinks.classList.toggle('open');
-    navCta.classList.toggle('open');
+    if (navCta) navCta.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded', isOpen);
   });
 
@@ -1072,7 +986,6 @@
     const sphere = document.getElementById('wordSphere');
     if (!sphere) return;
 
-    // Dati: parole e relative bandierine
     const words = [
       { text: 'Hello', flag: '🇬🇧' },
       { text: 'Hola', flag: '🇪🇸' },
@@ -1088,10 +1001,8 @@
       { text: 'Culture', flag: '🌍' }
     ];
 
-    // Distribuzione su una sfera (metodo Fibonacci sphere)
     const count = words.length;
 
-    // Adatta il raggio in base alla dimensione del contenitore
     function getRadius() {
       const rect = sphere.getBoundingClientRect();
       const size = Math.min(rect.width, rect.height);
@@ -1102,7 +1013,7 @@
       const existingTags = sphere.querySelectorAll('.word-tag');
       existingTags.forEach(tag => tag.remove());
 
-      const phi = Math.PI * (3 - Math.sqrt(5));  // angolo d'oro
+      const phi = Math.PI * (3 - Math.sqrt(5));
 
       for (let i = 0; i < count; i++) {
         const y = 1 - (i / (count - 1)) * 2;
@@ -1117,13 +1028,11 @@
         tag.className = 'word-tag';
         tag.innerHTML = `<span class="flag-icon">${words[i].flag}</span>${words[i].text}`;
 
-        // Posizione iniziale
         const centerX = sphere.offsetWidth / 2 || 170;
         const centerY = sphere.offsetHeight / 2 || 170;
         tag.style.left = (centerX + x - (tag.offsetWidth / 2 || 20)) + 'px';
         tag.style.top = (centerY + yPos - 12) + 'px';
 
-        // Salva le coordinate come attributi data per l'hover
         tag.dataset.baseX = x;
         tag.dataset.baseY = yPos;
         tag.dataset.baseZ = z;
@@ -1133,23 +1042,19 @@
       }
     }
 
-    // Funzione per aggiornare le posizioni al resize
     function updateSphere() {
       const r = getRadius();
       positionWords(r);
     }
 
-    // Inizializza
     setTimeout(updateSphere, 50);
 
-    // Aggiorna al resize (debounced)
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(updateSphere, 200);
     });
 
-    // ---- EFFETTO HOVER: esplosione / attrazione delle parole ----
     sphere.addEventListener('mouseenter', () => {
       const tags = sphere.querySelectorAll('.word-tag');
       tags.forEach(tag => {
@@ -1158,7 +1063,6 @@
         const baseZ = parseFloat(tag.dataset.baseZ) || 0;
         const r = parseFloat(tag.dataset.radius) || 150;
 
-        // Moltiplica il raggio per un fattore casuale per creare "esplosione"
         const explodeFactor = 1.6 + Math.random() * 0.6;
         const newX = baseX * explodeFactor;
         const newY = baseY * explodeFactor;
@@ -1167,7 +1071,6 @@
         const centerX = sphere.offsetWidth / 2 || 170;
         const centerY = sphere.offsetHeight / 2 || 170;
 
-        // Proiezione semplice: usiamo le coordinate XY con un effetto di profondità (z)
         const scale = 1 + (newZ / (r * 1.5));
         const finalX = centerX + newX - (tag.offsetWidth / 2 || 20);
         const finalY = centerY + newY - 12;
@@ -1197,66 +1100,51 @@
 
   })();
 
+  // ============================================================
+  // MODALE CONTATTI
+  // ============================================================
   const modal = document.getElementById("contactModal");
-const openButton = document.getElementById("openContact");
-const closeButton = document.getElementById("closeModal");
+  const openButtons = document.querySelectorAll(".js-open-contact");
+  const closeButton = document.getElementById("closeModal");
 
-const form = document.getElementById("contactForm");
+  const form = document.getElementById("contactForm");
 
-const email = document.getElementById("email");
-const phone = document.getElementById("phone");
-const message = document.getElementById("message");
+  const email = document.getElementById("email");
+  const phone = document.getElementById("phone");
+  const message = document.getElementById("message");
 
-const emailError = document.getElementById("emailError");
-const phoneError = document.getElementById("phoneError");
-const messageError = document.getElementById("messageError");
+  const emailError = document.getElementById("emailError");
+  const phoneError = document.getElementById("phoneError");
+  const messageError = document.getElementById("messageError");
 
+  openButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
+  });
 
-// APERTURA MODALE
-openButton.addEventListener("click", () => {
-    modal.style.display = "flex";
-});
-
-
-// CHIUSURA
-closeButton.addEventListener("click", () => {
+  closeButton.addEventListener("click", () => {
     modal.style.display = "none";
-});
+  });
 
-
-// CHIUSURA CLICCANDO FUORI
-modal.addEventListener("click", (event) => {
-
+  modal.addEventListener("click", (event) => {
     if (event.target === modal) {
-        modal.style.display = "none";
+      modal.style.display = "none";
     }
+  });
 
-});
-
-
-// VALIDAZIONE EMAIL
-function validateEmail(value) {
-
+  function validateEmail(value) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     return regex.test(value.trim());
-}
+  }
 
-
-// VALIDAZIONE TELEFONO ITALIANO
-function validatePhone(value) {
-
+  function validatePhone(value) {
     const cleaned = value.replace(/[\s().-]/g, "");
-
     const regex = /^(?:(?:\+|00)39)?3\d{8,9}$/;
-
     return regex.test(cleaned);
-}
+  }
 
-
-// INVIO
-form.addEventListener("submit", (event) => {
-
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     emailError.textContent = "";
@@ -1265,45 +1153,27 @@ form.addEventListener("submit", (event) => {
 
     let valid = true;
 
-
-    // EMAIL
     if (!validateEmail(email.value)) {
-
-        emailError.textContent =
-            "Inserisci un indirizzo email valido.";
-
-        valid = false;
+      emailError.textContent = "Inserisci un indirizzo email valido.";
+      valid = false;
     }
 
-
-    // TELEFONO
     if (!validatePhone(phone.value)) {
-
-        phoneError.textContent =
-            "Inserisci un numero di telefono valido.";
-
-        valid = false;
+      phoneError.textContent = "Inserisci un numero di telefono valido.";
+      valid = false;
     }
 
-
-    // MESSAGGIO
     if (message.value.trim().length < 10) {
-
-        messageError.textContent =
-            "Scrivi un messaggio di almeno 10 caratteri.";
-
-        valid = false;
+      messageError.textContent = "Scrivi un messaggio di almeno 10 caratteri.";
+      valid = false;
     }
-
 
     if (!valid) {
-        return;
+      return;
     }
 
-
     // QUI INSERIREMO L'INVIO DELLA MAIL
-
-});
+  });
 
 </script>
 
